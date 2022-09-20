@@ -1,56 +1,38 @@
 package ru.acorn.springcourse;
 
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.beans.factory.annotation.Value;
+
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 public class MusicPlayer {
-    private Music music;
 
-    public MusicPlayer(Music music) {
-        this.music = music;
-    }
-
-    //private List<Music> musicList = new ArrayList<>();
-
-    //private Music music; //зависомость dependency
+    @Value("${musicPlayer.name}")
     private String name;
+
+    @Value("${musicPlayer.volume}")
     private int volume;
+
+    private List<Music> musicList;
+
+    public MusicPlayer(List<Music> musicList) {
+        this.musicList = musicList;
+    }
 
     public String getName() {
         return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
     }
 
     public int getVolume() {
         return volume;
     }
 
-    public void setVolume(int volume) {
-        this.volume = volume;
-    }
-    public void playMusic() {
-        System.out.println("Playing: " + music.getSong());
+    public String playMusic() {
+        Random random = new Random();
+
+        return "Playing: " + musicList.get(random.nextInt(musicList.size())).getSong()
+                + " with volume " + this.volume;
     }
 }
-
-
-
-//    public void setMusicList(List<Music> musicList) {
-//        this.musicList = musicList;
-//    }
-
-
-
-
-//
-//    public void playMusicList(){
-//        for (Music music: musicList
-//             ) {
-//            System.out.println("Playing " + music.getSong());
-//        }
-//    }
-//
-//}
