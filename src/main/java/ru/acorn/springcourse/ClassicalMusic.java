@@ -3,6 +3,7 @@ package ru.acorn.springcourse;
 import org.springframework.stereotype.Component;
 
  //ID Component создает bean
+@Component
 public class ClassicalMusic implements Music{
 
     public ClassicalMusic(){
