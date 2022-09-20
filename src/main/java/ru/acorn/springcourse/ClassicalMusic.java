@@ -1,24 +1,29 @@
 package ru.acorn.springcourse;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
- //ID Component создает bean
+import java.util.ArrayList;
+import java.util.List;
+
+//ID Component создает bean
 @Component
 public class ClassicalMusic implements Music{
+    private List<String> songs = new ArrayList<>();
+    {
+        songs.add("Hungarian rhapsody");
+        songs.add("Moonlight sonata");
+        songs.add("Turkish March");
+    }
+
+
 
     public ClassicalMusic(){
-
     }
 
-    public void doMyInit(){
-        System.out.println("Doing my initialization");
-    }
 
-    public void doMyDestroy(){
-        System.out.println("Doing my destruction");
-    }
     @Override
-    public String getSong() {
-        return "Hungarian rhapsody";
+    public List<String> getSong() {
+        return songs;
     }
 }
